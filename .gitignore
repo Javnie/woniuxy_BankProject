@@ -1,0 +1,15 @@
+# MacOS #
+.gitignore
+**/.DS_Store
+
+# Maven #
+target/
+
+# IDEA #
+.idea/
+*.iml
+
+# Eclipse #
+.settings/
+.classpath
+.project
