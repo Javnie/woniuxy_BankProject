@@ -1,6 +1,6 @@
 package com.woniuxy.exception;
 
-public class IdNumAlreadyExistException extends RuntimeException{
+public class IdNumAlreadyExistException extends RuntimeException {
     public IdNumAlreadyExistException() {
 
     }

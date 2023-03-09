@@ -66,37 +66,6 @@ public class DbHelper {
         }
     }
 
-//    public static <T> T executeSQL(Class<T> c, String sql, int id) {
-//        ResultSet resultSet = null;
-//        T t = null;
-//        Field[] f = c.getDeclaredFields();
-//        try {
-//            PreparedStatement pstmt = getConnection().prepareStatement(sql);
-//            pstmt.setObject(1, id);
-//            resultSet = pstmt.executeQuery();
-//            if (resultSet.next()) {
-//                t = c.newInstance();
-//                for (Field field : f) {
-//                    field.setAccessible(true);
-//                    if (field.getType().equals(LocalDate.class)) {
-//                        String msg = resultSet.getString(field.getName());
-//                        LocalDate date = LocalDate.parse(msg, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-//                        field.set(t, date);
-//                    } else {
-//                        field.set(t, resultSet.getObject(field.getName()));
-//                    }
-//                }
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        } catch (InstantiationException e) {
-//            throw new RuntimeException(e);
-//        } catch (IllegalAccessException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return t;
-//    }
-
     public static <T> T executeSQL(Class<T> c, String sql, Object o) {
         ResultSet resultSet = null;
         T t = null;
@@ -161,25 +130,5 @@ public class DbHelper {
             throw new RuntimeException(e);
         }
         return resultList;
-    }
-
-    public static Object getLinkedInfo(String columnLabel, Object t1, Object t2, Object d1, Object d2) {
-        ResultSet resultSet = null;
-        Object result = null;
-        String sql = "SELECT * FROM ?,? WHERE ?=?";
-
-        PreparedStatement pstmt = null;
-        try {
-            pstmt = getConnection().prepareStatement(sql);
-            pstmt.setObject(1, t1);
-            pstmt.setObject(2, t2);
-            pstmt.setObject(3, d1);
-            pstmt.setObject(4, d2);
-            resultSet = pstmt.executeQuery();
-            if (resultSet.next()) result = resultSet.getObject(columnLabel);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return result;
     }
 }

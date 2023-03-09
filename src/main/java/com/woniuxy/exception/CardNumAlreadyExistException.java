@@ -1,6 +1,6 @@
 package com.woniuxy.exception;
 
-public class CardNumAlreadyExistException extends RuntimeException{
+public class CardNumAlreadyExistException extends RuntimeException {
     public CardNumAlreadyExistException() {
     }
 

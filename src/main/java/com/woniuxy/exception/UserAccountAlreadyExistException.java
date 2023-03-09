@@ -1,6 +1,6 @@
 package com.woniuxy.exception;
 
-public class UserAccountAlreadyExistException extends RuntimeException{
+public class UserAccountAlreadyExistException extends RuntimeException {
     public UserAccountAlreadyExistException() {
     }
 

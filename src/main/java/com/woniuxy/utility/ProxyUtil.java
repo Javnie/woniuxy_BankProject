@@ -32,7 +32,6 @@ public class ProxyUtil {
                 return r;
             }
         });
-
         return (T) enhancer.create();
     }
 }

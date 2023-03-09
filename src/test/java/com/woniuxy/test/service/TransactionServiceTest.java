@@ -7,6 +7,6 @@ import java.math.BigDecimal;
 
 public class TransactionServiceTest {
     public static void main(String[] args) {
-//        ProxyUtil.getProxy(TransactionService.class).doTransaction("0000000002","0000000001","YSID6CU986",new BigDecimal("500"));
+        ProxyUtil.getProxy(TransactionService.class).doTransaction("0000000002","0000000001",new BigDecimal("500"));
     }
 }
