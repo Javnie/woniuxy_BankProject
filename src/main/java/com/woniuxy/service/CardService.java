@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class CardService {
     CardDAO cDao = new CardDAO();
 
-    public List<String> getCardShowedInfoOfId(Card card) {
+    public List<String> getCardShowingInfoById(Card card) {
         List<String> list = new ArrayList<>();
         list.add("卡号：" + card.getNum());
         list.add("余额：" + card.getBalance());
@@ -23,7 +23,7 @@ public class CardService {
         return list;
     }
 
-    public List<Card> getCardsInfoOfUser(int owner) {
+    public List<Card> getCardListByOwner(int owner) {
         return cDao.getAll().stream()
                 .filter(card -> card.getOwner() == owner)
                 .collect(Collectors.toList());

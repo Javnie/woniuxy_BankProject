@@ -6,7 +6,6 @@ import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class ProxyUtil {
     public static <T> T getProxy(Class<T> c) {
@@ -14,20 +13,17 @@ public class ProxyUtil {
         enhancer.setSuperclass(c);
         enhancer.setCallback(new MethodInterceptor() {
             @Override
-            public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) {
+            public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
                 Connection connection = DbHelper.getConnection();
                 Object r = null;
                 try {
                     connection.setAutoCommit(false);
                     r = methodProxy.invokeSuper(o, objects);
                     connection.commit();
-                } catch (Throwable e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                    try {
-                        connection.rollback();
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    connection.rollback();
+                    throw e;
                 }
                 return r;
             }

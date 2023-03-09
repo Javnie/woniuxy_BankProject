@@ -11,7 +11,7 @@ import java.util.List;
 public class UserService {
     UserDAO uDao = new UserDAO();
 
-    public List<String> getUserInfoOfId(int id) {
+    public List<String> getUserShowingInfoById(int id) {
         User user = uDao.getById(id);
         List<String> list = new ArrayList<>();
         list.add("账户名：" + user.getAccount());
